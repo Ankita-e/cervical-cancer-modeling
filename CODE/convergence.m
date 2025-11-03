@@ -127,3 +127,4 @@ xlabel('Iteration'); ylabel('Max change');
 title('Convergence of Controls and States');
 legend('Control change','State change');
 grid on;
+
