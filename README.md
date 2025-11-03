@@ -1,5 +1,3 @@
-# cervical-cancer-modeling
-MATLAB scripts for cervical cancer mortality modelling and optimal control simulations.
 # Cervical Cancer Mortality Modelling (UK, 1993–2040)
 
 This repository accompanies the paper:
