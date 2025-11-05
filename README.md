@@ -25,25 +25,24 @@ The model captures the dynamics of:
 
 
 ## Repository Structure
+```bash
 cervical-cancer-modeling/
-│
-├── CODE/ # MATLAB scripts
-│ ├── run_calibration_and_scenarios.m # Calibration, forecasting & sensitivity analysis
-│ └── convergence.m # Forward–Backward Sweep optimal control solver
+├── CODE/                      # MATLAB scripts
+│   ├── run_calibration_and_scenarios.m   # Calibration, forecasting & sensitivity analysis
+│   └── convergence.m                     # Forward–Backward Sweep optimal control solver
 │
 ├── DATA/
-│ └── cervical_cancer_tidy.xlsx # Cleaned UK national dataset (1993–2019)
+│   └── cervical_cancer_tidy.xlsx         # Cleaned UK national dataset (1993–2019)
 │
-├── FIGURE/ # Saved output figures (auto-generated)
-│ ├── convergence_error.png # Convergence history of the FBSM method (used in paper)
-│ ├── fit_plots.png # Observed versus model-fitted incidence and case-fatality ratio (CFR) (used in paper)
-│ ├── states_control.png # Model states + optimal controls (used in paper)
-│ ├── scenario_incidence.png # Projected incidence under intervention scenarios (used in paper)
-│ └── sensitivity_gamma1.png # Effect of prevention strength on elimination year
-│ └── scenario_cfr.png # (Generated, optional, not included in manuscript)
+├── FIGURE/                                # Saved output figures (auto-generated)
+│   ├── convergence_error.png              # Convergence history of the FBSM method (used in paper)
+│   ├── fit_plots.png                      # Observed vs model-fitted incidence & CFR (used in paper)
+│   ├── states_controls.png                # Model trajectories + optimal controls (used in paper)
+│   ├── scenario_incidence.png             # Projected incidence under intervention scenarios (used in paper)
+│   └── sensitivity_gamma1.png             # Effect of prevention strength on elimination year (used in paper)
 │
 └── README.md
-
+```
 
 ## Requirements
 
@@ -58,9 +57,17 @@ cervical-cancer-modeling/
 ```bash
 git clone https://github.com/Ankita-e/cervical-cancer-modeling.git
 cd cervical-cancer-modeling/CODE
+```
 
 
-## Citation
-If using this repository, please cite:
-Chakraborty, A. (2025). A Mathematical Modelling Framework for Cervical Cancer Mortality 
-in the UK: Projections Towards 2040 Elimination.
+
+
+
+## How to Cite
+
+If you use this repository or its results, please cite:
+
+> Chakraborty, A. (2025). *A Mathematical Modelling Framework for Cervical Cancer Mortality in the UK: Projections Towards 2040 Elimination*. GitHub Repository.  
+> https://github.com/Ankita-e/cervical-cancer-modeling
+
+
