@@ -20,7 +20,7 @@ This repository contains the MATLAB implementation of a mechanistic cervical can
 The model captures the dynamics of:
 - **Incidence** \( I(t) \): declining through vaccination & screening
 - **Case-Fatality Ratio** \( C(t) \): improving through treatment & early detection
-- **Mortality** \( M(t) = I(t) \cdot C(t) \)
+- **Mortality** \( M(t) = I(t)*C(t) \)
 
 ---
 
