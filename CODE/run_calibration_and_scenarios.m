@@ -1,6 +1,5 @@
 %% run_calibration_and_scenarios.m
 % Complete cervical cancer model calibration and scenario forecasting
-% Author: [Your Name]
 % Date: [Today]
 % Requires: cervical_cancer_tidy_numeric.xlsx in working folder
 
@@ -158,23 +157,46 @@ scenario_summary = cell2table(scenario_rows, 'VariableNames', {'Scenario','Elimi
 writetable(scenario_summary, 'scenario_summary.csv');
 fprintf('Saved scenario_summary.csv\n');
 
+%% --- Scenario Forecasts: INCIDENCE ---
 figure; hold on;
-fields = fieldnames(scenario_outputs);
-for f = 1:numel(fields)
-    dataf = scenario_outputs.(fields{f});
-    plot(dataf.tgrid_years, dataf.I_sim, 'DisplayName', fields{f});
-end
-yline(elim_thresh,'k--','Elimination threshold (4/100k)');
-xlabel('Year'); ylabel('Incidence per 100k'); title('Scenario Forecasts: Incidence');
-legend('Location','northeast'); saveas(gcf,'scenario_incidence.png'); close(gcf);
 
-figure; hold on;
-for f = 1:numel(fields)
-    dataf = scenario_outputs.(fields{f});
-    plot(dataf.tgrid_years, dataf.C_sim, 'DisplayName', fields{f});
-end
-xlabel('Year'); ylabel('CFR'); title('Scenario Forecasts: CFR');
-legend('Location','northeast'); saveas(gcf,'scenario_cfr.png'); close(gcf);
+figure('Position',[100 100 900 420]); % Taller figure to allow space underneath
+hold on;
+
+p1 = plot(scenario_outputs.Baseline.tgrid_years, scenario_outputs.Baseline.I_sim, 'b-', 'LineWidth', 2);
+p2 = plot(scenario_outputs.Enhanced_Prevention.tgrid_years, scenario_outputs.Enhanced_Prevention.I_sim, 'r-', 'LineWidth', 2);
+p3 = plot(scenario_outputs.Enhanced_Treatment.tgrid_years, scenario_outputs.Enhanced_Treatment.I_sim, 'k--', 'LineWidth', 2);
+p4 = plot(scenario_outputs.Combined_Controls.tgrid_years, scenario_outputs.Combined_Controls.I_sim, 'm-', 'LineWidth', 2);
+
+yline(elim_thresh,'k--','Elimination threshold (4 per 100k)');
+
+xlabel('Year');
+ylabel('Incidence per 100,000 women-years');
+title('Projected Incidence under Intervention Scenarios');
+
+% ---- Move legend below plot, horizontal, centered ----
+lgd = legend([p1 p2 p3 p4], ...
+    {'Baseline (no intervention)', ...
+     'Enhanced Prevention (u_1 increased)', ...
+     'Enhanced Treatment (u_2 increased)', ...
+     'Combined Controls (u_1 and u_2 increased)'}, ...
+     'Location','southoutside', ...
+     'Orientation','horizontal', ...
+     'FontSize',11, ...        % smaller font so it fits
+     'NumColumns',2);          % wrap legend into 2 columns
+
+lgd.Box = 'off';
+
+% ---- Resize the axes upward so the legend has space ----
+ax = gca;
+ax.Position = [0.10 0.38 0.85 0.55]; 
+% [left bottom width height]
+
+% Reduce white padding around axes
+set(gca,'LooseInset', max(get(gca,'TightInset'), 0.02));
+saveas(gcf,'scenario_incidence.png');
+close(gcf);
+
 
 %% --- Sensitivity on gamma1
 gamma1_values = linspace(0,0.2,11);
@@ -238,3 +260,4 @@ function [I, C] = simulate_controls(r, k, Cinf, I0, C0, gamma1, gamma2, u1, u2, 
         C(tt+1) = max(ynext(2),1e-12);
     end
 end
+
