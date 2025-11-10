@@ -39,6 +39,7 @@ cervical-cancer-modeling/
 │   ├── fit_plots.png                      # Observed vs model-fitted incidence & CFR (used in paper)
 │   ├── states_controls.png                # Model trajectories + optimal controls (used in paper)
 │   ├── scenario_incidence.png             # Projected incidence under intervention scenarios (used in paper)
+│   ├── scenario_cfr.png                   # Scenario CFR projection (used in paper)
 │   └── sensitivity_gamma1.png             # Effect of prevention strength on elimination year (used in paper)
 │
 └── README.md
